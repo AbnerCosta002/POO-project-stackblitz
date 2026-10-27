@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./tabStyles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sistema Escolar</title>
   </head>
@@ -31,14 +32,13 @@
 
     <!-- Conteúdo da Aba 2: Listar -->
     <div id="tab-listar" class="tab-content">
-      <h3>Alunos Cadastrados</h3>
-      <ul class="Listar-alunos" id="alunos">
-        <!-- O JavaScript vai colocar os alunos aqui depois -->
-        <li>Nenhum aluno cadastrado ainda.</li>
-      </ul>
+      <h2>Alunos Cadastrados</h2>
+      <!-- Trocado de <ul> para <div> para eliminar recuos indesejados -->
+      <div id="alunos"></div>
     </div>
 
-    <script src="./script.js"></script>
+    <!-- Aluno.js carregado ANTES de script.js -->
     <script src="./Aluno.js"></script>
+    <script src="./script.js"></script>
   </body>
 </html>

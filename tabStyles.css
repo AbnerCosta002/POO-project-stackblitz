@@ -1,0 +1,80 @@
+/* Container principal: centraliza o conteúdo e mantém o título e a tabela alinhados */
+.container, #tab-listar {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 16px;
+  text-align: center; /* Centraliza botões e títulos se desejar */
+}
+
+/* Alinhamento do Título */
+#tab-listar h2, 
+h2 {
+  text-align: left; /* Garante que o título começa exatamente onde a tabela começa */
+  margin-bottom: 20px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Estrutura da Tabela */
+#alunos {
+  width: 100%;
+  margin-top: 15px;
+}
+
+#alunos table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  table-layout: fixed; /* Força o cumprimento exato da largura das colunas */
+}
+
+/* Largura e alinhamento das colunas */
+#alunos th:nth-child(1),
+#alunos td:nth-child(1) {
+  width: 45%;
+  text-align: left;
+  padding-left: 20px;
+}
+
+#alunos th:nth-child(2),
+#alunos td:nth-child(2) {
+  width: 25%;
+  text-align: center;
+}
+
+#alunos th:nth-child(3),
+#alunos td:nth-child(3) {
+  width: 30%;
+  text-align: center;
+}
+
+/* Cabeçalho com fundo cinzento e cantos arredondados */
+#alunos th {
+  background-color: #f1f3f5;
+  color: #333;
+  padding: 14px 12px;
+  font-weight: 600;
+}
+
+#alunos th:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+#alunos th:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Células dos alunos */
+#alunos td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #e5e5e5;
+  color: #333;
+}
+
+/* Efeito ao passar o cursor */
+#alunos tr:hover td {
+  background-color: #f8f9fa;
+}
