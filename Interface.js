@@ -32,9 +32,10 @@ class Interface{
         lista =
           lista +
           "<tr>"+
-          "<td>"+turma[i].nome + "</td>"+
-          "<td>"+turma[i].media.toFixed(1) + "</td>"+
-          "<td>"+turma[i].estado + "</td>" +
+          "<td>"+turma[i].getNome() + "</td>"+
+          "<td>"+turma[i].getMedia().toFixed(1) + "</td>"+
+          "<td>"+turma[i].getEstado() + "</td>" +
+          '<td><button onclick="editarAluno(' + i + ')">Editar</button></td>'+
           '</tr>';
       }
       lista += "</table>"
@@ -44,6 +45,7 @@ class Interface{
     static cadastrar() {
       const btnCadastrar = document.getElementById('btn-cadastrar');
       const tabCadastrar = document.getElementById('tab-cadastrar');
+
       const btnListar = document.getElementById('btn-listar');
       const tabListar = document.getElementById('tab-listar');
   

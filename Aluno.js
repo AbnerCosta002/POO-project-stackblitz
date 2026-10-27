@@ -1,19 +1,19 @@
 class Aluno {
-  nome;
+  #nome;
   nota1;
   nota2;
   nota3;
-  estado;
-  media;
+  #estado;
+  #media;
   constructor(nome, nota1, nota2, nota3) {
-    this.nome = nome;
+    this.#nome = nome;
     this.nota1 = nota1;
     this.nota2 = nota2;
     this.nota3 = nota3;
   }
   gerarMedia(nota1, nota2, nota3) {
     let m = (nota1 + nota2 + nota3) / 3;
-    this.media = m;
+    this.#media = m;
     return m;
   }
   gerarEstado(media) {
@@ -25,7 +25,28 @@ class Aluno {
     } else {
       est = 'Reprovado';
     }
-    this.estado = est;
+    this.#estado = est;
     return est;
   }
+  getNome(){
+    return this.#nome;
+  }
+  setNome(nome){
+    this.#nome = nome;
+  }
+
+  getMedia(){
+    return this.#media;
+  }
+  setMedia(media){
+    this.#media = media;
+  }
+
+  getEstado(){
+    return this.#estado;
+  }
+  setEstado(estado){
+    this.#estado = estado;
+  }
+ 
 } //fim da classe
