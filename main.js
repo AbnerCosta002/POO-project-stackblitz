@@ -33,39 +33,47 @@ function editarAluno(index) {
   }
 
   function btnSalvar() {
+    // Validação prévia de existência de turmas
+    if (listaTurmas.length === 0) {
+      alert('Cadastre pelo menos uma turma antes de cadastrar ou editar alunos!');
+      Interface.alternarSubAba('turma');
+      return;
+    }
+  
+    let indexTurma = document.getElementById('Turma').value;
+    if (indexTurma === "") {
+      alert('Por favor, selecione uma turma!');
+      return;
+    }
+  
     let nome = document.getElementById('nome').value;
     let n1 = Number(document.getElementById('n1').value);
     let n2 = Number(document.getElementById('n2').value);
     let n3 = Number(document.getElementById('n3').value);
-    let indexTurma = document.getElementById('Turma').value;
-
-    let turmaSelecionada = indexTurma !== "" ? listaTurmas[indexTurma] : null;
+    let turmaSelecionada = listaTurmas[Number(indexTurma)];
   
     if (alunoEditandoIndex !== null) {
-      // Modo Edição: atualiza o aluno existente
+      // Modo Edição
       let aluno = listaAlunos[alunoEditandoIndex];
       aluno.setNome(nome);
       aluno.setNota1(n1);
       aluno.setNota2(n2);
       aluno.setNota3(n3);
       aluno.setTurma(turmaSelecionada);
-
-      // Recalcula a média e o estado
+  
       let m = aluno.gerarMedia(n1, n2, n3);
       aluno.gerarEstado(m);
   
       alert('Aluno alterado com sucesso!');
-      alunoEditandoIndex = null; // Reseta o estado para modo de novo cadastro
+      alunoEditandoIndex = null;
     } else {
       // Modo Novo Cadastro
       let a = Interface.salvar(listaTurmas);
-      if (a) {
-        listaAlunos.push(a);
-        alert('Aluno cadastrado com sucesso!');
-      }
+      if (!a) return; // Se a validação falhou dentro da Interface, encerra sem limpar o formulário
+      listaAlunos.push(a);
     }
   
-    // Limpa o formulário
+    // Limpa o formulário apenas em caso de sucesso
     document.getElementById('nome').value = '';
     document.getElementById('n1').value = '';
     document.getElementById('n2').value = '';
@@ -84,4 +92,8 @@ function editarAluno(index) {
       document.getElementById('curso').value = '';
       document.getElementById('prof').value = '';
     }
+  }
+
+  function mostrarSubAba(tipo) {
+    Interface.alternarSubAba(tipo);
   }

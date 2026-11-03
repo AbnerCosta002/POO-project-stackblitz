@@ -167,3 +167,42 @@ hr {
 #alunos td button:hover {
   background-color: #0056b3;
 }
+
+/* Container das sub-abas */
+.sub-tabs-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* Botões das sub-abas */
+.subtab-button {
+  flex: 1;
+  padding: 8px 12px;
+  background-color: #e9ecef;
+  color: #495057;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.subtab-button.active {
+  background-color: #6c757d;
+  color: #ffffff;
+  border-color: #6c757d;
+}
+
+/* Esconde as sub-abas por padrão */
+.subtab-content {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Exibe apenas a sub-aba ativa */
+.subtab-content.active {
+  display: flex;
+}
