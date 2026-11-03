@@ -15,9 +15,9 @@ function editarAluno(index) {
   
     // Carrega os dados do aluno nos inputs da tela
     document.getElementById('nome').value = aluno.getNome();
-    document.getElementById('n1').value = aluno.nota1;
-    document.getElementById('n2').value = aluno.nota2;
-    document.getElementById('n3').value = aluno.nota3;
+    document.getElementById('n1').value = aluno.getNota1();
+    document.getElementById('n2').value = aluno.getNota2();
+    document.getElementById('n3').value = aluno.getNota3();
   
     // Alterna para a aba de cadastro/edição
     Interface.cadastrar();
@@ -33,9 +33,9 @@ function editarAluno(index) {
       // Modo Edição: atualiza o aluno existente
       let aluno = turma[alunoEditandoIndex];
       aluno.setNome(nome);
-      aluno.nota1 = n1;
-      aluno.nota2 = n2;
-      aluno.nota3 = n3;
+      aluno.setNota1(n1);
+      aluno.setNota2(n2);
+      aluno.setNota3(n3);
 
       // Recalcula a média e o estado
       let m = aluno.gerarMedia(n1, n2, n3);

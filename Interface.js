@@ -33,9 +33,9 @@ class Interface{
           lista +
           "<tr>"+
           "<td>"+turma[i].getNome() + "</td>"+
-          "<td>"+turma[i].nota1.toFixed(1) + "</td>"+
-          "<td>"+turma[i].nota2.toFixed(1) + "</td>"+
-          "<td>"+turma[i].nota3.toFixed(1) + "</td>"+
+          "<td>"+turma[i].getNota1().toFixed(1) + "</td>"+
+          "<td>"+turma[i].getNota2().toFixed(1) + "</td>"+
+          "<td>"+turma[i].getNota3().toFixed(1) + "</td>"+
           "<td>"+turma[i].getMedia().toFixed(1) + "</td>"+
           "<td>"+turma[i].getEstado() + "</td>" +
           '<td><button onclick="editarAluno(' + i + ')">Editar</button></td>'+
