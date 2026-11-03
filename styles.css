@@ -2,11 +2,12 @@
 body {
   font-family: Arial, sans-serif;
   padding: 20px;
-  max-width: 850px; /* Aumentado de 350px para 850px para dar espaço total à tabela */
+  max-width: 900px; /* Expandido para acomodar confortavelmente todas as 9 colunas */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  color: #333;
 }
 
 /* Container dos botões das abas */
@@ -50,22 +51,35 @@ body {
   display: flex;
 }
 
-/* Estilo dos inputs */
-input {
-  padding: 8px;
+/* Estilo padronizado para inputs e selects */
+input, select {
+  padding: 8px 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
   width: 100%;
   box-sizing: border-box;
+  background-color: #fff;
 }
 
-input:focus {
+input:focus, select:focus {
   outline: none;
   border-color: #007bff;
 }
 
-/* Botão simples para salvar o cadastro */
+/* Títulos e divisores da aba de cadastro */
+h2, h3 {
+  margin: 10px 0 5px 0;
+  color: #222;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 15px 0;
+}
+
+/* Botão de salvar */
 .btn-salvar {
   padding: 10px;
   background-color: #28a745;
@@ -74,16 +88,82 @@ input:focus {
   border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
+  transition: background-color 0.2s;
 }
 
-/* Estilo simples para a lista de alunos */
-.lista-alunos {
-  list-style: none;
-  padding: 0;
+.btn-salvar:hover {
+  background-color: #218838;
 }
 
-.lista-alunos li {
-  padding: 8px;
-  border-bottom: 1px solid #eee;
+/* --- Estrutura da Tabela de Alunos (9 Colunas) --- */
+#alunos {
+  width: 100%;
+  margin-top: 15px;
+  overflow-x: auto; /* Garante rolabillidade apenas em telas muito pequenas */
+}
+
+#alunos table {
+  width: 100%;
+  min-width: 800px; /* Garante legibilidade para as 9 colunas */
+  border-collapse: separate;
+  border-spacing: 0;
   font-size: 14px;
+}
+
+/* Cabeçalho com fundo cinza e cantos arredondados */
+#alunos th {
+  background-color: #f1f3f5;
+  color: #333;
+  padding: 12px 8px;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#alunos th:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  text-align: left;
+  padding-left: 14px;
+}
+
+#alunos th:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* Células de dados da tabela */
+#alunos td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #e5e5e5;
+  color: #333;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#alunos td:first-child {
+  text-align: left;
+  padding-left: 14px;
+}
+
+/* Destaque ao passar o mouse na linha */
+#alunos tr:hover td {
+  background-color: #f8f9fa;
+}
+
+/* Botão de Editar dentro da tabela */
+#alunos td button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+#alunos td button:hover {
+  background-color: #0056b3;
 }

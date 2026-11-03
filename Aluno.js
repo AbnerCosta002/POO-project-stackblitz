@@ -5,11 +5,14 @@ class Aluno {
   #nota3;
   #estado;
   #media;
-  constructor(nome, nota1, nota2, nota3) {
+  #turma
+  
+  constructor(nome, nota1, nota2, nota3, turma = null) {
     this.#nome = nome;
     this.#nota1 = nota1;
     this.#nota2 = nota2;
     this.#nota3 = nota3;
+    this.#turma = turma;
   }
   gerarMedia(nota1, nota2, nota3) {
     let m = (nota1 + nota2 + nota3) / 3;
@@ -36,6 +39,7 @@ class Aluno {
   getNota3(){return this.#nota3;}
   getMedia(){return this.#media;}
   getEstado(){return this.#estado;}
+  getTurma(){return this.#turma;}
 
   // Setters
   setNome(nome){this.#nome = nome;}
@@ -44,5 +48,6 @@ class Aluno {
   setNota3(nota3){this.#nota3 = nota3;}
   setMedia(media){this.#media = media;}
   setEstado(estado){this.#estado = estado;}
- 
+  setTurma(turma){this.#turma = turma;}
+
 } //fim da classe
