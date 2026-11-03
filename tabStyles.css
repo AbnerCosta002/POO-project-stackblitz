@@ -1,80 +1,84 @@
-/* Container principal: centraliza o conteúdo e mantém o título e a tabela alinhados */
-.container, #tab-listar {
-  max-width: 600px;
+/* 1. Expande o container das abas para caber as 7 colunas confortavelmente */
+.tab-content, 
+#tab-listar, 
+.tabs-container {
+  max-width: 850px !important; /* Aumenta a largura máxima para dar espaço */
+  width: 100%;
   margin: 0 auto;
-  padding: 0 16px;
-  text-align: center; /* Centraliza botões e títulos se desejar */
+  box-sizing: border-box;
 }
 
-/* Alinhamento do Título */
-#tab-listar h2, 
-h2 {
-  text-align: left; /* Garante que o título começa exatamente onde a tabela começa */
-  margin-bottom: 20px;
-  font-family: system-ui, -apple-system, sans-serif;
-}
-
-/* Estrutura da Tabela */
+/* 2. Área da tabela */
 #alunos {
   width: 100%;
-  margin-top: 15px;
+  margin-top: 20px;
+  overflow-x: auto; /* Rolagem só aparece em telas muito pequenas (ex: celulares) */
 }
 
 #alunos table {
   width: 100%;
+  min-width: 680px; /* Garante que a tabela não se esprema demais */
   border-collapse: separate;
   border-spacing: 0;
   font-family: system-ui, -apple-system, sans-serif;
   font-size: 14px;
-  table-layout: fixed; /* Força o cumprimento exato da largura das colunas */
 }
 
-/* Largura e alinhamento das colunas */
-#alunos th:nth-child(1),
-#alunos td:nth-child(1) {
-  width: 45%;
-  text-align: left;
-  padding-left: 20px;
-}
-
-#alunos th:nth-child(2),
-#alunos td:nth-child(2) {
-  width: 25%;
-  text-align: center;
-}
-
-#alunos th:nth-child(3),
-#alunos td:nth-child(3) {
-  width: 30%;
-  text-align: center;
-}
-
-/* Cabeçalho com fundo cinzento e cantos arredondados */
+/* 3. Impede que "Nota 1" quebre em duas linhas */
 #alunos th {
   background-color: #f1f3f5;
   color: #333;
-  padding: 14px 12px;
+  padding: 12px 10px;
   font-weight: 600;
+  white-space: nowrap; /* Garante que o texto fique em uma única linha */
+  text-align: center;
 }
 
+/* Alinhamento específico do Nome (à esquerda) */
+#alunos th:first-child,
+#alunos td:first-child {
+  text-align: left;
+  padding-left: 16px;
+}
+
+/* Arredondamento dos cantos do cabeçalho */
 #alunos th:first-child {
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 #alunos th:last-child {
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
-/* Células dos alunos */
+/* Células com espaçamento adequado */
 #alunos td {
-  padding: 14px 12px;
+  padding: 12px 10px;
   border-bottom: 1px solid #e5e5e5;
   color: #333;
+  text-align: center;
+  white-space: nowrap;
 }
 
-/* Efeito ao passar o cursor */
+/* Destaque ao passar o mouse */
 #alunos tr:hover td {
   background-color: #f8f9fa;
+}
+
+/* Estilo do botão Editar */
+#alunos td button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+#alunos td button:hover {
+  background-color: #0056b3;
 }

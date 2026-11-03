@@ -2,7 +2,7 @@
 body {
   font-family: Arial, sans-serif;
   padding: 20px;
-  max-width: 350px; /* Aumentado levemente para acomodar as abas */
+  max-width: 850px; /* Aumentado de 350px para 850px para dar espaço total à tabela */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -50,7 +50,7 @@ body {
   display: flex;
 }
 
-/* Estilo dos inputs (mantido da etapa anterior) */
+/* Estilo dos inputs */
 input {
   padding: 8px;
   border: 1px solid #ccc;

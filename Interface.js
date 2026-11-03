@@ -27,12 +27,15 @@ class Interface{
       tabListar.classList.add('active');
       tabCadastrar.classList.remove('active');
       let lista = '<table>';
-      lista +="<tr><th><b>Nome</th> <th>Media</th> <th>Situação</th> </tr>";
+      lista += "<tr><th>Nome</th> <th>Nota 1</th> <th>Nota 2</th> <th>Nota 3</th> <th>Média</th> <th>Situação</th> <th>Ação</th></tr>";
       for (let i = 0; i < turma.length; i++) {
         lista =
           lista +
           "<tr>"+
           "<td>"+turma[i].getNome() + "</td>"+
+          "<td>"+turma[i].nota1.toFixed(1) + "</td>"+
+          "<td>"+turma[i].nota2.toFixed(1) + "</td>"+
+          "<td>"+turma[i].nota3.toFixed(1) + "</td>"+
           "<td>"+turma[i].getMedia().toFixed(1) + "</td>"+
           "<td>"+turma[i].getEstado() + "</td>" +
           '<td><button onclick="editarAluno(' + i + ')">Editar</button></td>'+
