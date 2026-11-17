@@ -40,45 +40,68 @@ class Interface{
   alert('Aluno cadastrado com sucesso!');
   return a1;
     }
-    static listar(turma) {
-      const btnCadastrar = document.getElementById('btn-cadastrar');
-      const tabCadastrar = document.getElementById('tab-cadastrar');
-      const btnListar = document.getElementById('btn-listar');
-      const tabListar = document.getElementById('tab-listar');
-  
-      btnListar.classList.add('active');
-      btnCadastrar.classList.remove('active');
-  
-      // Ajusta o conteúdo visível
-      tabListar.classList.add('active');
-      tabCadastrar.classList.remove('active');
-      let lista = '<table>';
-      lista += "<tr><th>Turma</th> <th>Curso</th> <th>Nome</th> <th>Nota 1</th> <th>Nota 2</th> <th>Nota 3</th> <th>Média</th> <th>Situação</th> <th>Ação</th></tr>";
-      for (let i = 0; i < turma.length; i++) {
-        let aluno = listaAlunos[i];
-        let turmaObj = aluno.getTurma();
     
-        // 2. Extrai o nome da turma e do curso em segurança
-        let nomeTurma = turmaObj ? turmaObj.getNomeT() : 'Sem Turma';
-        let nomeCurso = turmaObj ? turmaObj.getCurso() : '-';
-        
-        lista =
-          lista +
-          "<tr>"+
+static listar(listaAlunos) {
+  const btnCadastrar = document.getElementById('btn-cadastrar');
+  const tabCadastrar = document.getElementById('tab-cadastrar');
+  const btnListar = document.getElementById('btn-listar');
+  const tabListar = document.getElementById('tab-listar');
+
+  btnListar.classList.add('active');
+  btnCadastrar.classList.remove('active');
+
+  tabListar.classList.add('active');
+  tabCadastrar.classList.remove('active');
+
+  let lista = '<table>';
+
+  lista += `
+      <tr>
+          <th>Turma</th>
+          <th>Curso</th>
+          <th>Professor</th>
+          <th>Nome</th>
+          <th>Nota 1</th>
+          <th>Nota 2</th>
+          <th>Nota 3</th>
+          <th>Média</th>
+          <th>Situação</th>
+          <th>Ação</th>
+      </tr>
+  `;
+
+  for (let i = 0; i < listaAlunos.length; i++) {
+
+      let aluno = listaAlunos[i];
+      let turmaObj = aluno.getTurma();
+
+      let nomeTurma = turmaObj ? turmaObj.getNomeT() : 'Sem Turma';
+      let nomeCurso = turmaObj ? turmaObj.getCurso() : '-';
+
+      // Recupera o professor associado à turma
+      let professor = turmaObj ? turmaObj.getProfessor() : null;
+      let nomeProfessor = professor ? professor.getNome() : '-';
+
+      lista +=
+          "<tr>" +
           "<td>" + nomeTurma + "</td>" +
           "<td>" + nomeCurso + "</td>" +
-          "<td>"+turma[i].getNome() + "</td>"+
-          "<td>"+turma[i].getNota1().toFixed(1) + "</td>"+
-          "<td>"+turma[i].getNota2().toFixed(1) + "</td>"+
-          "<td>"+turma[i].getNota3().toFixed(1) + "</td>"+
-          "<td>"+turma[i].getMedia().toFixed(1) + "</td>"+
-          "<td>"+turma[i].getEstado() + "</td>" +
-          '<td><button onclick="editarAluno(' + i + ')">Editar</button></td>'+
-          '</tr>';
-      }
-      lista += "</table>"
-      document.getElementById('alunos').innerHTML = lista;
-    }
+          "<td>" + nomeProfessor + "</td>" +
+          "<td>" + aluno.getNome() + "</td>" +
+          "<td>" + aluno.getNota1().toFixed(1) + "</td>" +
+          "<td>" + aluno.getNota2().toFixed(1) + "</td>" +
+          "<td>" + aluno.getNota3().toFixed(1) + "</td>" +
+          "<td>" + aluno.getMedia().toFixed(1) + "</td>" +
+          "<td>" + aluno.getEstado() + "</td>" +
+          '<td><button onclick="editarAluno(' + i + ')">Editar</button></td>' +
+          "</tr>";
+  }
+
+  lista += "</table>";
+
+  document.getElementById('alunos').innerHTML = lista;
+}
+
   
     static cadastrar() {
       const btnCadastrar = document.getElementById('btn-cadastrar');
@@ -96,32 +119,29 @@ class Interface{
       //document.getElementById("media").innerHTML = m;
     }
 
-    static salvarT() {
-      let nomeT = document.getElementById('nomeT').value;
-      let curso = document.getElementById('curso').value;
-      let prof = document.getElementById('prof').value;
+    
+  static salvarT() {
+    let nomeT = document.getElementById('nomeT').value;
+    let curso = document.getElementById('curso').value;
+    let nomeProf = document.getElementById('prof').value;
+    let formacao = document.getElementById('formacao').value;
+    let estado = document.getElementById('estado').value;
 
-      if (!nomeT || !curso || !prof) {
+    if (!nomeT.trim() || !curso.trim() ||
+        !nomeProf.trim() || !formacao.trim() || !estado.trim()) {
+
         alert('Por favor, preencha todos os campos da turma.');
         return null;
-      }
-  
-      let t1 = new Turma(nomeT, curso, prof);
-      alert('Turma cadastrada com sucesso!');
-      return t1;
     }
 
-    static atualizarSelectTurmas(listaTurmas) {
-      const select = document.getElementById('Turma');
-      select.innerHTML = '<option value="">Selecione uma Turma</option>';
-  
-      listaTurmas.forEach((turma, index) => {
-        const option = document.createElement('option');
-        option.value = index; // Armazena o índice da turma no array
-        option.textContent = `${turma.getNomeT()} (${turma.getCurso()})`;
-        select.appendChild(option);
-      });
-    }
+    let p = new Professor(nomeProf, formacao, estado);
+
+    let t1 = new Turma(nomeT, curso, p);
+
+    alert('Turma cadastrada com sucesso!');
+
+    return t1;
+  }
 
     static alternarSubAba(tipo) {
       const btnAluno = document.getElementById('btn-sub-aluno');
@@ -141,5 +161,20 @@ class Interface{
         subtabAluno.classList.remove('active');
       }
     }
+
+    static atualizarSelectTurmas(listaTurmas) {
+      const select = document.getElementById('Turma');
+  
+      select.innerHTML = '<option value="">Selecione uma Turma</option>';
+  
+      listaTurmas.forEach((turma, index) => {
+          const option = document.createElement('option');
+  
+          option.value = index;
+          option.textContent = `${turma.getNomeT()} (${turma.getCurso()})`;
+  
+          select.appendChild(option);
+      });
+  }
 
   }//fim da classe

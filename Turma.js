@@ -13,13 +13,17 @@ class Turma {
 
     // Método utilitário para adicionar alunos um por um
     adicionarAluno(aluno) {
-        this.#alunos.push(aluno);
-    }
+      this.#alunos.push(aluno);
+  }
+  
+  removerAluno(aluno) {
+      this.#alunos = this.#alunos.filter(a => a !== aluno);
+  }
     
     // Getters
     getNomeT(){return this.#nomeT;}
     getCurso(){return this.#curso;}
-    getProfessor(){return this.#professor;}
+    getProfessor() {return this.#professor;}
     getAluno(){return this.#alunos;}
     
     // Setters
